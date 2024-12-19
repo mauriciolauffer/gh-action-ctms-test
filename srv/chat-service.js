@@ -25,8 +25,8 @@ async function getRagResponse(userQuery, chatHistory) {
   const contentColumn = "TEXT_CHUNK";
   const aiEmbeddingConfig = getAiEmbeddingConfig();
   const aiChatConfig = getAiChatConfig();
-  const vectorplugin = await cds.connect.to("cap-llm-plugin");
-  return vectorplugin.getRagResponse(
+  const llmPlugin = await cds.connect.to("cap-llm-plugin");
+  return llmPlugin.getRagResponseWithConfig(
     userQuery,
     tableName,
     embeddingColumnName,
