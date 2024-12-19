@@ -1,5 +1,5 @@
 _schema-version: 3.3.0
-ID: btp-cap-rag-ai
+ID: btp-cap-rag-ai-001
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -9,10 +9,9 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm ci
         - npx cds build --production
 modules:
-  - name: btp-cap-rag-ai-srv
+  - name: btp-cap-rag-ai-srv-001
     type: nodejs
     path: gen/srv
     parameters:
@@ -30,70 +29,70 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: btp-cap-rag-ai-db
-      - name: btp-cap-rag-ai-auth
-      - name: btp-cap-rag-ai-destination
+      - name: btp-cap-rag-ai-db-001
+      - name: btp-cap-rag-ai-auth-001
+      - name: btp-cap-rag-ai-destination-001
 
-  - name: btp-cap-rag-ai-db-deployer
+  - name: btp-cap-rag-ai-db-deployer-001
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: btp-cap-rag-ai-db
+      - name: btp-cap-rag-ai-db-001
 
-  - name: btp-cap-rag-ai-app-deployer
+  - name: btp-cap-rag-ai-app-deployer-001
     type: com.sap.application.content
     path: gen
     requires:
-      - name: btp-cap-rag-ai-html5-repo-host
+      - name: btp-cap-rag-ai-html5-repo-host-001
         parameters:
           content-target: true
     build-parameters:
       build-result: app/
       requires:
-        - name: btpcapragaichat
+        - name: btpcapragaichat-001
           artifacts:
             - chat.zip
           target-path: app/
-        - name: btpcapragaiembedding
+        - name: btpcapragaiembedding-001
           artifacts:
             - embedding.zip
           target-path: app/
 
-  - name: btpcapragaichat
+  - name: btpcapragaichat-001
     type: html5
     path: app/chat
     build-parameters:
       build-result: dist
       builder: custom
       commands:
-        - npm ci
+        - npm i
         - npm run build
       supported-platforms: []
-  - name: btpcapragaiembedding
+  - name: btpcapragaiembedding-001
     type: html5
     path: app/embedding
     build-parameters:
       build-result: dist
       builder: custom
       commands:
-        - npm ci
+        - npm i
         - npm run build
       supported-platforms: []
-  - name: btp-cap-rag-ai-destinations
+  - name: btp-cap-rag-ai-destinations-001
     type: com.sap.application.content
     requires:
-      - name: btp-cap-rag-ai-auth
+      - name: btp-cap-rag-ai-auth-001
         parameters:
           service-key:
             name: btp-cap-rag-ai-auth-key
-      - name: btp-cap-rag-ai-html5-repo-host
+      - name: btp-cap-rag-ai-html5-repo-host-001
         parameters:
           service-key:
             name: btp-cap-rag-ai-html5-repo-host-key
       - name: srv-api
-      - name: btp-cap-rag-ai-destination
+      - name: btp-cap-rag-ai-destination-001
         parameters:
           content-target: true
     build-parameters:
@@ -105,36 +104,36 @@ modules:
           destinations:
             - Name: btp-cap-rag-ai-app-srv
               Authentication: OAuth2UserTokenExchange
-              TokenServiceInstanceName: btp-cap-rag-ai-auth
+              TokenServiceInstanceName: btp-cap-rag-ai-auth-001
               TokenServiceKeyName: btp-cap-rag-ai-auth-key
               URL: ~{srv-api/srv-url}
               sap.cloud.service: btpcapragai.service
             - Name: btp-cap-rag-ai-html5-repository
-              ServiceInstanceName: btp-cap-rag-ai-html5-repo-host
+              ServiceInstanceName: btp-cap-rag-ai-html5-repo-host-001
               ServiceKeyName: btp-cap-rag-ai-html5-repo-host-key
               sap.cloud.service: btpcapragai.service
             - Name: btp-cap-rag-ai-auth
               Authentication: OAuth2UserTokenExchange
-              ServiceInstanceName: btp-cap-rag-ai-auth
+              ServiceInstanceName: btp-cap-rag-ai-auth-001
               ServiceKeyName: btp-cap-rag-ai-auth-key
               sap.cloud.service: btpcapragai.service
 
 resources:
-  - name: btp-cap-rag-ai-db
+  - name: btp-cap-rag-ai-db-001
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: btp-cap-rag-ai-auth
+  - name: btp-cap-rag-ai-auth-001
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: btp-cap-rag-ai-auth
+        xsappname: btp-cap-rag-ai-auth-001
         tenant-mode: dedicated
-  - name: btp-cap-rag-ai-destination
+  - name: btp-cap-rag-ai-destination-001
     type: org.cloudfoundry.managed-service
     requires:
       - name: srv-api
@@ -154,12 +153,7 @@ resources:
                 ProxyType: Internet
                 HTML5.ForwardAuthToken: true
                 HTML5.DynamicDestination: true
-              - Authentication: NoAuthentication
-                Name: ui5
-                ProxyType: Internet
-                Type: HTTP
-                URL: https://ui5.sap.com
-  - name: btp-cap-rag-ai-html5-repo-host
+  - name: btp-cap-rag-ai-html5-repo-host-001
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo

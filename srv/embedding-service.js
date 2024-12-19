@@ -58,11 +58,11 @@ async function splitDocumentInTextChunks(pdfBlob) {
 async function getEmbeddingPayload(textChunks, filename) {
   const aiEmbeddingConfig = getAiEmbeddingConfig();
   const textChunkEntries = [];
-  const vectorplugin = await cds.connect.to("cap-llm-plugin");
+  const llmPlugin = await cds.connect.to("cap-llm-plugin");
 
   // Generate embeddings for each text chunk
   for (const chunk of textChunks) {
-    const embedding = await vectorplugin.getEmbedding(
+    const embedding = await llmPlugin.getEmbeddingWithConfig(
       aiEmbeddingConfig,
       chunk.pageContent
     );
