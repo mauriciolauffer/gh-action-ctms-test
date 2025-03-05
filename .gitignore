@@ -38,3 +38,8 @@ resources/
 dist/
 .eslintcache
 db.*
+
+# Terraform
+.terraform
+.terraform.*
+*.tfstate
