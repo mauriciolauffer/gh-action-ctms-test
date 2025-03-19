@@ -18,13 +18,13 @@ jobs:
       - run: npm run build --if-present
       - uses: mauriciolauffer/ctms@main
         with:
-          CTMS_TOKEN_SERVICE_URL: ${{ vars.CTMS_TOKEN_SERVICE_URL }}
-          CTMS_CLIENT_ID: ${{ secrets.CTMS_CLIENT_ID }}
+          CTMS_TOKEN_SERVICE_URL: "https://47a28edbtrial.authentication.us10.hana.ondemand.com/oauth/token"
+          CTMS_CLIENT_ID: "sb-1d1ea825-203f-486b-8bc8-cb0c2ab9cfb0!b413250|alm-ts-backend!b1603"
           CTMS_CLIENT_SECRET: ${{ secrets.CTMS_CLIENT_SECRET }}
-          CTMS_API_URL: ${{ vars.CTMS_API_URL }}
-          CTMS_NODE_NAME: ${{ vars.CTMS_NODE_NAME }}
-          CTMS_FILE_PATH: ${{ vars.CTMS_FILE_PATH }}
-          CTMS_TR_DESCRIPTION: ${{ vars.CTMS_TR_DESCRIPTION }}
-          CTMS_TR_CONTENT_TYPE: ${{ vars.CTMS_TR_CONTENT_TYPE }}
-          CTMS_TR_STORAGE_TYPE: ${{ vars.CTMS_TR_STORAGE_TYPE }}
-          CTMS_TR_USER_NAME: ${{ vars.CTMS_TR_USER_NAME }}
+          CTMS_API_URL: "https://transport-service-app-backend.ts.cfapps.us10.hana.ondemand.com/v2"
+          CTMS_NODE_NAME: "cf-dev"
+          CTMS_FILE_PATH: "./archive.mtar"
+          CTMS_TR_DESCRIPTION: "Uploaded by GH x3"
+          CTMS_TR_CONTENT_TYPE: "MTA"
+          CTMS_TR_STORAGE_TYPE: "FILE"
+          CTMS_TR_USER_NAME: "lauffer.dev@outlook.com"
