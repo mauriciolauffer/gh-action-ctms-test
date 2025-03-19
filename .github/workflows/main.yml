@@ -18,13 +18,13 @@ jobs:
       - run: npm run build --if-present
       - uses: mauriciolauffer/ctms@main
         with:
-          CTMS_TOKEN_SERVICE_URL: ${{ secrets.CTMS_TOKEN_SERVICE_URL }}
+          CTMS_TOKEN_SERVICE_URL: ${{ vars.CTMS_TOKEN_SERVICE_URL }}
           CTMS_CLIENT_ID: ${{ secrets.CTMS_CLIENT_ID }}
           CTMS_CLIENT_SECRET: ${{ secrets.CTMS_CLIENT_SECRET }}
-          CTMS_API_URL: ${{ secrets.CTMS_API_URL }}
-          CTMS_NODE_NAME: ${{ secrets.CTMS_NODE_NAME }}
-          CTMS_FILE_PATH: ${{ secrets.CTMS_FILE_PATH }}
-          CTMS_TR_DESCRIPTION: ${{ secrets.CTMS_TR_DESCRIPTION }}
-          CTMS_TR_CONTENT_TYPE: ${{ secrets.CTMS_TR_CONTENT_TYPE }}
-          CTMS_TR_STORAGE_TYPE: ${{ secrets.CTMS_TR_STORAGE_TYPE }}
-          CTMS_TR_USER_NAME: ${{ secrets.CTMS_TR_USER_NAME }}
+          CTMS_API_URL: ${{ vars.CTMS_API_URL }}
+          CTMS_NODE_NAME: ${{ vars.CTMS_NODE_NAME }}
+          CTMS_FILE_PATH: ${{ vars.CTMS_FILE_PATH }}
+          CTMS_TR_DESCRIPTION: ${{ vars.CTMS_TR_DESCRIPTION }}
+          CTMS_TR_CONTENT_TYPE: ${{ vars.CTMS_TR_CONTENT_TYPE }}
+          CTMS_TR_STORAGE_TYPE: ${{ vars.CTMS_TR_STORAGE_TYPE }}
+          CTMS_TR_USER_NAME: ${{ vars.CTMS_TR_USER_NAME }}
