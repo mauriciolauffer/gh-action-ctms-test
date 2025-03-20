@@ -23,7 +23,7 @@ jobs:
           CTMS_CLIENT_SECRET: ${{ secrets.CTMS_CLIENT_SECRET }}
           CTMS_API_URL: ${{ vars.CTMS_API_URL }}
           CTMS_NODE_NAME: ${{ vars.CTMS_NODE_NAME }}
-          CTMS_FILE_PATH: "./archive.mtar"
+          CTMS_FILE_PATH: ${{ vars.CTMS_FILE_PATH }}
           CTMS_TR_DESCRIPTION: ${{ vars.CTMS_TR_DESCRIPTION }}
           CTMS_TR_CONTENT_TYPE: ${{ vars.CTMS_TR_CONTENT_TYPE }}
           CTMS_TR_STORAGE_TYPE: ${{ vars.CTMS_TR_STORAGE_TYPE }}
