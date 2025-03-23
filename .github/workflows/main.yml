@@ -16,6 +16,8 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run build --if-present
+      - run: echo $PWD
+      - run: ls
       - uses: mauriciolauffer/ctms@main
         with:
           CTMS_TOKEN_SERVICE_URL: ${{ vars.CTMS_TOKEN_SERVICE_URL }}
