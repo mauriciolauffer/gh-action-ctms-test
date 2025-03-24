@@ -16,14 +16,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: echo $PWD
-      - name: Generate the file (example)
-        run: |
-          mkdir gen2
-          echo "Archive Data" > gen2/archive.txt
-      - run: ls
-      - run: ls gen2
-      - run: ls gen
       - uses: mauriciolauffer/ctms@main
         with:
           CTMS_TOKEN_SERVICE_URL: ${{ vars.CTMS_TOKEN_SERVICE_URL }}
